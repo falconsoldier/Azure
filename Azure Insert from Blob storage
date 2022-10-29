@@ -1,0 +1,25 @@
+/* Create Database Scoped Credential MarketCredential3
+With Identity = 'Shared Access Signature',
+Secret = 'sp=r&st=2022-09-28T23:01:17Z&se=2022-09-29T07:01:17Z&spr=https&sv=2021-06-08&sr=c&sig=fZfxm%2Bu8mY1gbWxrwbRWBdV4ZSA0KG%2Fcq86M4kN0dYo%3D'
+
+
+CREATE EXTERNAL DATA SOURCE MyAzureBlobStorage
+WITH ( TYPE = BLOB_STORAGE,
+LOCATION = 'URL REMOVED'
+ , CREDENTIAL= MarketCredential3
+ ); 
+*/
+
+BULK INSERT [dbo].[Real_Estate] FROM 'Boston_Assessment.csv'
+WITH (
+    CHECK_CONSTRAINTS,
+    DATA_SOURCE = 'MyAzureBlobStorage',
+    DATAFILETYPE='char',
+    FIELDTERMINATOR=',',
+    ROWTERMINATOR='0x0a',
+ FIRSTROW=2,
+    TABLOCK
+); 
+
+--drop external data source MyAzureBlobStorage1;
+select * from sys.external_data_sources;
