@@ -1,0 +1,12 @@
+/* Some of the data had commas in the strings, I searched the last column and then re-entered those rows. */
+
+SELECT *
+  FROM [dbo].[Real_Estate] as rs
+    WHERE CORNER_UNIT != 'N - NO'
+    OR NOT NULL;
+
+SELECT * 
+  from [dbo].[Real_Estate] as rs
+    where CORNER_UNIT Like '%3,G - Good,Y - Yes%'
+    or Corner_Unit like '%A - Average,Y - Yes%'
+    or Corner_UNIT like '%G - Good,N - No%';
