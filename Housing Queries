@@ -1,1 +1,10 @@
+/* Look at properties with low values */
+
+select /*concat(ST_NUM, ' ', ST_NAME, ' ', City),
+		LIVING_AREA,
+		LAND_SF,
+		BLDG_VALUE,
+		TOTAL_VALUE */ count(*)
+from [dbo].[Real_Estate]
+where total_value < 1;
 
