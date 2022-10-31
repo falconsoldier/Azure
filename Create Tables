@@ -32,7 +32,30 @@ Create table Boston_Real_Estate
 	GROSS_TAX numeric,
 	YR_BUILT varchar(100),
 	YR_REMODAL varchar(100),
-	STRUCTURE_Class varchar(100),
+	PROP_VIEW varchar(100),
+	CORNER_UNIT varchar(100) );
+  --------------------------------------------------------------------------------------
+  /* Create Table for Owner Information */
+  
+  Create Table Boston_Property_Owner (
+    OwnerID int not null Primary Key,
+    Property_ID int non null,
+    OWN_OCC varchar(100),
+  	OWNER_NAME varchar(1000),
+    Mail_ADDRESSE varchar(1000),
+  	MAIL_ADDRESS varchar(2000),
+  	MAIL_CITY varchar(1000),
+	  MAIL_STATE varchar(1000),
+	  MAIL_ZIP varchar(100)
+    FOREIGN KEY (Property_ID) REFERENCES Boston_Real_estate (Property_ID)
+   );
+  --------------------------------------------------------------------------------------
+    /* Create Table for Property Information */
+  
+  Create Table Boston_Structure_Info (
+    Structure_ID int not null Primary Key,
+    Property_ID int non null,
+    	STRUCTURE_Class varchar(100),
 	Roof_structure varchar(100),
 	ROOF_COVER varchar(100),
 	INT_WALL varchar(100),
@@ -59,20 +82,5 @@ Create table Boston_Real_Estate
 	FIRE_PLACE varchar(100),
 	ORIENTATION varchar(100),
 	NUM_PARKING varchar(100),
-	PROP_VIEW varchar(100),
-	CORNER_UNIT varchar(100) );
-  --------------------------------------------------------------------------------------
-  /* Create Table for Owner Information */
-  
-  Create Table Boston_Property_Owner (
-    OwnerID int not null Primary Key,
-    Property_ID int non null,
-    OWN_OCC varchar(100),
-  	OWNER_NAME varchar(1000),
-    Mail_ADDRESSE varchar(1000),
-  	MAIL_ADDRESS varchar(2000),
-  	MAIL_CITY varchar(1000),
-	  MAIL_STATE varchar(1000),
-	  MAIL_ZIP varchar(100)
     FOREIGN KEY (Property_ID) REFERENCES Boston_Real_estate (Property_ID)
    );
