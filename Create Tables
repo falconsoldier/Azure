@@ -30,8 +30,8 @@ Create table Boston_Real_Estate
 	BLDG_VALUE int,
 	TOTAL_VALUE int,
 	GROSS_TAX numeric,
-	YR_BUILT varchar(100),
-	YR_REMODAL varchar(100),
+	YR_BUILT int,
+	YR_REMODAL int,
 	PROP_VIEW varchar(100),
 	CORNER_UNIT varchar(100) );
   --------------------------------------------------------------------------------------
@@ -63,8 +63,8 @@ Create table Boston_Real_Estate
 	INT_CONDITION varchar(100),
 	EXT_COND varchar(100),
 	OVERALL_COND varchar(100),
-	BED_RMS varchar(100),
-	FULL_BTH varchar(100),
+	BED_RMS int,
+	FULL_BTH int,
 	HLF_BATHS int,
 	KITCHEN int,
 	TT_ROOMS int,
