@@ -1,10 +1,50 @@
 /* Look at properties with low values */
 
-select /*concat(ST_NUM, ' ', ST_NAME, ' ', City),
+select concat(ST_NUM, ' ', ST_NAME, ' ', City),
 		LIVING_AREA,
 		LAND_SF,
 		BLDG_VALUE,
-		TOTAL_VALUE */ count(*)
-from [dbo].[Real_Estate]
+		TOTAL_VALUE 
+from [dbo].[Boston_Real_Estate]
 where total_value < 1;
 
+/* Look at owners with the most property values */
+
+Select PO.Owner_name,
+	count(*)
+from Boston_Property_Owner as PO
+left join Boston_Real_Estate as BRE
+on PO.Property_ID = BRE.Property_ID
+
+group by Owner_name
+limit 20;
+
+/* Look at properties my girlfriend would consider living in */
+
+select *
+	from Boston_Real_Estate as BRE
+	left join Boston_Structure_Info as BSI
+	on BRE.Property_ID = BSI.Property_ID
+	
+	Where (YR_BUILT > 1950
+	or BRE.YR_Remodal >2010)
+	and BRE.Total_Value <= 1000000
+	ad BSI.Bed_RMS > 3
+	
+/* Looking at the properties my girlfriend would consider in more detail*/
+select BRE.ST_Name as Street,
+	BRE.City as Neighborhood,
+	BSI.BED_RMS as Bedrooms,
+	BSI.FULL_BTH as Bathrooms,
+	BSI.INT_Condition,
+	BSI.EXT_Condition,
+	BRE.total_VALUE/BSI.BED_RMS as Price_per_Bedroom
+
+	from Boston_Real_Estate as BRE
+	left join Boston_Structure_Info as BSI
+	on BRE.Property_ID = BSI.Property_ID
+	
+	Where (YR_BUILT > 1950
+	or BRE.YR_Remodal >2010)
+	and BRE.Total_Value <= 1000000
+	ad BSI.Bed_RMS > 3
